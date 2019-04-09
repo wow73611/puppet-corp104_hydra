@@ -1,0 +1,33 @@
+{
+  "name": "104corp-corp104_hydra",
+  "description": "corp104_hydra Module for Ubuntu.",
+  "version": "0.0.1",
+  "author": "104corp",
+  "summary": "Install ory/hydra as a service of systemd.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/104corp/corp104_hydra",
+  "project_page": "https://github.com/104corp/corp104_hydra",
+  "issues_url": "https://github.com/104corp/corp104_hydra/issues",
+    "tags": [
+    "104",
+    "hydra",
+    "puppet"
+  ],
+  "dependencies": [
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": "4.7.0 < 6.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "16.04"
+      ]
+    }
+  ]
+}
+

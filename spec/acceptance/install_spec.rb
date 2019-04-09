@@ -1,0 +1,14 @@
+require 'spec_helper_acceptance'
+
+describe 'install corp104_hydra' do
+  context 'default parameters' do
+    it 'should install package' do
+      pp = "class { 'corp104_hydra': }"
+
+      # Run it twice and test for idempotency
+      apply_manifest(pp, :catch_failures => true)
+      sleep(10)
+      apply_manifest(pp, :catch_changes => true)
+    end
+  end
+end

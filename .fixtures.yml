@@ -1,0 +1,3 @@
+fixtures:
+  symlinks:
+    "corp104_hydra": "#{source_dir}"

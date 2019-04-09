@@ -8,10 +8,10 @@ class corp104_hydra::install inherits corp104_hydra {
 
   # Create group
   group { 'hydra':
-  	ensure => 'present',
+    ensure => 'present',
     before => User['hydra']
   }
-  
+
   # Create user
   user { 'hydra':
     ensure => 'present',
@@ -33,7 +33,7 @@ class corp104_hydra::install inherits corp104_hydra {
       provider => 'shell',
       command  => "curl -x ${corp104_hydra::http_proxy} -o ${hydra_download_path} -O -L ${hydra_download_url}",
       path     => '/bin:/usr/bin:/usr/local/bin:/usr/sbin',
-      unless   => "cd ${corp104_hydra::tmp_path} && grep Linux_64 hydra_1.0.0-rc.8+oryOS.10_checksums.txt > checksum.txt && shasum -c checksum.txt",
+      unless   => "cd ${corp104_hydra::tmp_path} && grep Linux_64 hydra_1.0.0-rc.8+oryOS.10_checksums.txt > checksum.txt && sha256sum -c checksum.txt",
     }
   }
   else {
@@ -48,7 +48,7 @@ class corp104_hydra::install inherits corp104_hydra {
       provider => 'shell',
       command  => "curl -o ${hydra_download_path} -O -L ${hydra_download_url}",
       path     => '/bin:/usr/bin:/usr/local/bin:/usr/sbin',
-      unless   => "cd ${corp104_hydra::tmp_path} && grep Linux_64 hydra_1.0.0-rc.8+oryOS.10_checksums.txt > checksum.txt && shasum -c checksum.txt",
+      unless   => "cd ${corp104_hydra::tmp_path} && grep Linux_64 hydra_1.0.0-rc.8+oryOS.10_checksums.txt > checksum.txt && sha256sum -c checksum.txt",
     }
   }
 
@@ -72,18 +72,18 @@ class corp104_hydra::install inherits corp104_hydra {
 
     # create hydra log directory
   file { '/var/log/hydra':
-    ensure => 'directory',
-    before => File['hydra'],
+    ensure  => 'directory',
+    before  => File['hydra'],
     require => User['hydra'],
-    owner  => 'hydra',
-    group  => 'hydra'
+    owner   => 'hydra',
+    group   => 'hydra'
   }
 
   # Copy file
   file { 'hydra':
     ensure             => present,
     source             => "${corp104_hydra::tmp_path}/hydra",
-    path               => "$corp104_hydra::install_path/hydra",
+    path               => "${corp104_hydra::install_path}/hydra",
     recurse            => true,
     replace            => false,
     source_permissions => use,
