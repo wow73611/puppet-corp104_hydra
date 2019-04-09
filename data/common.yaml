@@ -1,0 +1,4 @@
+corp104_hydra::version: '1.0.0-rc.8+oryOS.10'
+corp104_hydra::tmp_path: '/root'
+corp104_hydra::install_path: '/opt/hydra'
+corp104_hydra::http_proxy: ~
