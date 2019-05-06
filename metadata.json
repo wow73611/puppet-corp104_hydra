@@ -1,7 +1,7 @@
 {
   "name": "104corp-corp104_hydra",
   "description": "corp104_hydra Module for Ubuntu.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "104corp",
   "summary": "Install ory/hydra as a service of systemd.",
   "license": "Apache-2.0",

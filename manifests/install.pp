@@ -16,6 +16,7 @@ class corp104_hydra::install inherits corp104_hydra {
   user { 'hydra':
     ensure => 'present',
     system => true,
+    home   => '/opt/hydra',
     gid    => 'hydra',
     before => Exec['download-hydra-checksum']
   }
