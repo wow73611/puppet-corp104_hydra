@@ -25,14 +25,14 @@ class corp104_hydra::install inherits corp104_hydra {
   if $corp104_hydra::http_proxy{
     exec { 'download-hydra-checksum':
       provider => 'shell',
-      command  => "curl -x ${corp104_hydra::http_proxy} -L ${hydra_checksum_url} >  ${hydra_checksum_path}",
+      command  => "curl -x ${corp104_hydra::http_proxy} ${hydra_checksum_url} >  ${hydra_checksum_path}",
       path     => '/bin:/usr/bin:/usr/local/bin:/usr/sbin',
       unless   => "test -e ${hydra_checksum_path}",
       before   => Exec['download-hydra']
     }
     exec { 'download-hydra':
       provider => 'shell',
-      command  => "curl -x ${corp104_hydra::http_proxy} -o ${hydra_download_path} -O -L ${hydra_download_url}",
+      command  => "curl -x ${corp104_hydra::http_proxy} -o ${hydra_download_path} -O ${hydra_download_url}",
       path     => '/bin:/usr/bin:/usr/local/bin:/usr/sbin',
       unless   => "cd ${corp104_hydra::tmp_path} && grep Linux_64 hydra_${corp104_hydra::version}_checksums.txt > checksum.txt && sha256sum -c checksum.txt",
     }
